@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<base target="_top">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>WMS example - Leaflet</title>
+
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		.leaflet-container {
+			height: 400px;
+			width: 600px;
+			max-width: 100%;
+			max-height: 100%;
+		}
+	</style>
+
+
+</head>
+<body>
+
+<div id='map'></div>
+
+<script type="text/javascript">
+
+var bicycleRental = {
+  "type": "FeatureCollection",
+  "features": [
+      {
+          "geometry": {
+              "type": "Point",
+              "coordinates": [
+                  -104.9998241,
+                  39.7471494
+              ]
+          },
+          "type": "Feature",
+          "properties": {
+              "popupContent": "BEEP. LoRa 1 info"
+          },
+          "id": 51
+      },
+      {
+          "geometry": {
+              "type": "Point",
+              "coordinates": [
+                  -104.9983545,
+                  39.7502833
+              ]
+          },
+          "type": "Feature",
+          "properties": {
+              "popupContent": "BOP, LoRa 2 info"
+          },
+          "id": 52
+      },
+      {
+          "geometry": {
+              "type": "Point",
+              "coordinates": [
+                  -104.9963919,
+                  39.7444271
+              ]
+          },
+          "type": "Feature",
+          "properties": {
+              "popupContent": "BOOP, Lora 3 info"
+          },
+          "id": 54
+      }
+
+  ]
+};
+
+	const map = L.map('map', {
+		center: [-17, -67],
+		zoom: 3
+	});
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+	const wmsLayer = L.tileLayer.wms('https://firms.modaps.eosdis.nasa.gov/mapserver/wms/fires/c4b0216412da797a3ed5a0da051e4341/fires_viirs_24/?REQUEST=GetMap&WIDTH=1024&HEIGHT=512&BBOX=-180,-90,180,90', {
+		layers: 'fires_viirs_snpp_24',
+        format: 'image/png',
+        transparent: true
+	}).addTo(map);
+
+    function onEachFeature(feature, layer) {
+		let popupContent = `<p>I started out as a GeoJSON ${feature.geometry.type}, but now I'm a Leaflet vector!</p>`;
+
+		if (feature.properties && feature.properties.popupContent) {
+			popupContent += feature.properties.popupContent;
+		}
+
+		layer.bindPopup(popupContent);
+	}
+
+        const bicycleRentalLayer = L.geoJSON([bicycleRental], {
+
+            style(feature) {
+                return feature.properties && feature.properties.style;
+            },
+
+            onEachFeature,
+
+            pointToLayer(feature, latlng) {
+                return L.circleMarker(latlng, {
+                    radius: 8,
+                    fillColor: '#ff7800',
+                    color: '#000',
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                });
+            }
+        }).addTo(map);;
+
+</script>
+
+
+
+</body>
+</html>

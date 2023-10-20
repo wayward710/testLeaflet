@@ -1,4 +1,4 @@
 WKT,latitude,longitude,AQSID,CountryCode,DataSource,Time,PM25,PM4,PM10,OZONE,NO,NO2,CH4,SO2,O3,CO,CO2,BC,Temperature,SiteName,StateName,Status
-"""POINT (41.4003 -123.7009)""",41.4003,-123.7009,1337c0de0001,US,Prairie Watchers,2023-10-09T00:56:14+07:00,23,,28,,,,,,,,0.7,,35.6,Updated,CA,Test
-"POINT (41.4018 -123.6953)""",41.4018,-123.6953,1337c0de0002,US,Prairie Watchers,2023-10-09T00:58:54+07:00,26,,27,,,,,,,,0.6,,35.8,Bogus,CA,Test
-"""POINT (41.3840 -123.7358)""",41.384,-123.7358,1337c0de0003,US,Prairie Watchers,2023-10-09T00:59:05+07:00,22,,30,,,,,,,,0.8,,35.7,Bogus,CA,Test
+"""POINT (38.2140 -119.9701)""",38.2140,-119.9701,1337c0de0001,US,Prairie Watchers,2023-10-19T00:56:14+07:00,23,,28,,,,,,,,0.7,,35.6,Updated,CA,Test
+"POINT (38.2050 -119.9668)""",38.2050,-119.9668,1337c0de0002,US,Prairie Watchers,2023-10-19T00:58:54+07:00,26,,27,,,,,,,,0.6,,35.8,Bogus,CA,Test
+"""POINT (38.2002 -119.9818)""",38.2002,-119.9818,1337c0de0003,US,Prairie Watchers,2023-10-19T00:59:05+07:00,22,,30,,,,,,,,0.8,,35.7,Bogus,CA,Test
